@@ -5,23 +5,34 @@
     <title>Radio Podcast : Écouter Radios et Podcasts live sur internet et iPhone</title>
   	<meta name="description" content="100% radio : Écoutez en live vos radios et podcasts préférés quand vous voulez !" />
     <meta name="keywords" content="radio, podcast, radiopodcast, écouter, radios, podcasts, nrj, fun, funradio, virgin, virginradio, virgin radio, europe, europe 1, rtl, france, france inter, inter, france culture, culture, sky, skyrock, rock, pop, hip hop, rap, électro, variété, jazz, chérie, fm, chérie fm, tuner, fréquence, française, français, live, direct, oui, oui fm, radio fg, fg, radiofg, radionova, nova, ado, adofm, bfm, fip, génération, mfm, rfm, rire & chansons, rtl2, iphone, stream, voltage" />
-    <script src="jquery-1.4.4.js" type="text/javascript"></script>
+    <script src="http://code.jquery.com/jquery-1.4.4.min.js" type="text/javascript"></script>
     <script>
 		$(function(){
 			$("figure img").click(function(e) {
-				console.log($(this));
+//				console.log($(this));
 				audio = $(this).parent().parent().children("audio");
-				console.log(audio[0]);
-				console.log(audio);
+//				console.log(audio[0]);
+//				console.log(audio);
 //				console.log(audio[0].currentTime);
-				if (audio[0].currentTime > 0) {
+//				console.log($(this).hasClass("show"));
+				if (audio.hasClass("show")) {
 //					console.log("will pause");
 					audio[0].pause();
+					audio.removeClass("show");
 				} else {
 //					console.log("will play");
 					audio[0].play();
 					audio.addClass("show");
 				}
+				
+				$("audio").each(function(index, value) {
+//					console.log('audio : ' + audio); 
+					if (audio[0] != value) {
+						$(value).removeClass("show");
+						value.pause();
+					}
+				});
+
 			});
 		});
 	</script>
@@ -30,7 +41,7 @@
 		img				{ margin: 10px 13px 0px; width:90px; }
 		audio 			{ width:inherit; position: relative; top: -45px; opacity: 0; }
 			.radio audio.show 	{ opacity: .6; }
-		.radio			{ text-align: center; margin: 1em; width:116px; height:125px; margin:12px; text-align:center; background:red; }
+		.radio			{ text-align: center; margin: 1em; width:116px; height:125px; margin:12px; text-align:center; <!-- background:red; --> }
 	</style>
     <meta name="csrf-param" content="authenticity_token"/>
 	<meta name="csrf-token" content="AIUyURH8Cv8NvYAvRbEx8QaE6oREXA2ygcHGjveEh3s="/>
