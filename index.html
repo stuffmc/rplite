@@ -8,37 +8,58 @@
     <script src="jquery-1.4.4.js" type="text/javascript"></script>
     <script>
 		$(function(){
-			$("article img").click(function() {
-				audio = $("article audio");
-				console.log(audio[0].currentTime);
+			$("figure img").click(function(e) {
+				console.log($(this));
+				audio = $(this).parent().parent().children("audio");
+				console.log(audio[0]);
+				console.log(audio);
+//				console.log(audio[0].currentTime);
 				if (audio[0].currentTime > 0) {
-					console.log("will pause");
+//					console.log("will pause");
 					audio[0].pause();
 				} else {
-					console.log("will play");
+//					console.log("will play");
 					audio[0].play();
+					audio.addClass("show");
 				}
-				audio.addClass("show");
 			});
 		});
 	</script>
 	<style>
-		article			{ width:116px; height:110px; margin:12px; <!-- background:red; --> }
-		img				{ margin: 10px 13px 10px; width:90px; }
-		audio 			{ width:inherit; position: absolute; top: 97px; opacity: 0; }
-			audio.show 	{ opacity: .6; }
+		body			{ font-family: Lucida Grande; font-size: 14px; }
+		img				{ margin: 10px 13px 0px; width:90px; }
+		audio 			{ width:inherit; position: relative; top: -45px; opacity: 0; }
+			.radio audio.show 	{ opacity: .6; }
+		.radio			{ text-align: center; margin: 1em; width:116px; height:125px; margin:12px; text-align:center; background:red; }
 	</style>
     <meta name="csrf-param" content="authenticity_token"/>
 	<meta name="csrf-token" content="AIUyURH8Cv8NvYAvRbEx8QaE6oREXA2ygcHGjveEh3s="/>
   </head>
   <body>
-		<div id="radios">
-			<article>
-				<img alt="Europe 1" src="http://radiopodcast.fr/system/radios/3_europe1_medium.png" />
-				<audio  src="http://vipicecast.yacast.net/europe1" controls autobuffer></audio>
+	<div id="radios">
+		<div class="radio">
+			<figure>
+				<img alt="Europe 1" src="http://radiopodcast.fr/system/radios/3_europe1_medium.png" /><br/>
 				<figcaption>Europe 1</figcaption>
-			</article>		
+			</figure>		
+			<audio id="europe" src="http://vipicecast.yacast.net/europe1" controls autobuffer></audio>
 		</div>
+
+		<div class="radio">
+			<figure>
+				<img alt="RFM" src="http://radiopodcast.fr/system/radios/9_rfm_original.png" /><br/>
+				<figcaption>RFM</figcaption>
+			</figure>		
+			<audio id="rfm" src="http://vipicecast.yacast.net/rfm" controls autobuffer></audio>
+		</div>
+		
+		
+		
+		
+		
+		
+	</div>
+
 <!--
 		http://vipicecast.yacast.net:80/franceinter
 		http://cheriefm.proxycast.org/m/media/247015201548.mp3?c=Vie_Pratique&p=Autres&l3=L_horoscope_Ch__rie_FM&l4=L_horoscope_Ch__rie_FM_du_15_F__vrier_2010&media_url=http%3A%2F%2Fprod-nrjmedia.integra.fr%2Factive%2Fsound%2Fhoro-web-15-02_.mp3
