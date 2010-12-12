@@ -21,15 +21,23 @@
 			$.getJSON('http://radiopodcast.com/radios.json', function(data) {
 //				console.log(data.count);
 		    $.each(data, function(i,item){
-		      console.log(item.radio);
+//		      console.log(item.radio);
 					radio = $(".radio:first").clone();
 					radio.find("figcaption").text(item.radio.name);
 					radio.find("#img").hide();
 					radio.find("img").css("display", "inline").attr("src", baseURL+item.radio.logo_url);
-					radio.find("audio").attr("src", baseURL+item.radio.stream_permalink+".xml");
+//					radio.find("audio").attr("src", baseURL+item.radio.stream_permalink+".xml");
+					$.get(baseURL+item.radio.stream_permalink+".xml", function(data) {
+						source = $(data).find("location").html();
+//						console.log(source);
+//						console.log(radio.find("audio")[0]);
+						radio.find("audio").attr("src", source);
+//						console.log(radio.find("audio")[0]);
+					}, "text");
+					
 					radio.appendTo('#radios');
 		    });
-			  $(".radio:first").fadeOut();
+			  $(".radio:first").remove();
 		  });
   
 			
@@ -153,7 +161,7 @@
 					<img/><br/>
 					<figcaption>Loading...</figcaption>
 				</figure>		
-				<audio controls autobuffer></audio>
+				<audio src="http://vipicecast.yacast.net/rfm" controls autobuffer></audio>
 			</div>
 		
 <!--
