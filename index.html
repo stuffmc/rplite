@@ -22,7 +22,7 @@
 //				console.log(data.count);
 		    $.each(data, function(i,item){
 //		      console.log(item.radio);
-					radio = $(".radio:first").clone();
+					var radio = $(".radio:first").clone(true);
 					radio.find("figcaption").text(item.radio.name);
 					radio.find("#img").hide();
 					radio.find("img").css("display", "inline").attr("src", baseURL+item.radio.logo_url);
@@ -43,19 +43,19 @@
 			
 			if (window.navigator.standalone == true) {  $("header").fadeOut(); } else { $("header").fadeIn();}
 			
-			$("figure img").click(function(e) {
-//				console.log($(this));
+			$("img").click(function(e) {
+				console.log($(this));
 				audio = $(this).parent().parent().children("audio");
 //				console.log(audio[0]);
 //				console.log(audio);
 //				console.log(audio[0].currentTime);
 //				console.log($(this).hasClass("show"));
 				if (audio.hasClass("show")) {
-//					console.log("will pause");
+					console.log("will pause");
 					audio[0].pause();
 					audio.removeClass("show");
 				} else {
-//					console.log("will play");
+					console.log("will play");
 					audio[0].play();
 					audio.addClass("show");
 				}
@@ -74,10 +74,10 @@
 	<style>
 		body				{ font-family: Lucida Grande; font-size: 14px; <!-- background:yellow; --> }
 		img					{ margin: 10px 13px 0px; width:90px; }
-		audio 			{ width:inherit; position: relative; top: -45px; <!-- opacity: 0; --> }
+		audio 			{ width:inherit; position: relative; top: -45px; opacity: 0; }
 			.radio audio.show 	{ opacity: .6; }
 		.radio			{ text-align: center; width:116px; height:125px; margin:12px; float:left; <!-- background:red; --> }
-		figure img	{ display:none; }
+		figure img	{ //display:none; }
 
 		/* position the bars and balls correctly (rotate them and translate them outward)*/
 		.bar1 {
@@ -158,10 +158,10 @@
 						<div class="bar7"></div>
 						<div class="bar8"></div>
 					</div>
-					<img/><br/>
+					<img src=""/><br/>
 					<figcaption>Loading...</figcaption>
 				</figure>		
-				<audio src="http://vipicecast.yacast.net/rfm" controls autobuffer></audio>
+				<audio controls autobuffer></audio>
 			</div>
 		
 <!--
@@ -183,6 +183,8 @@
 			</div>
 		</div>
 -->
+
+
 <!--
 		http://vipicecast.yacast.net:80/franceinter
 		http://cheriefm.proxycast.org/m/media/247015201548.mp3?c=Vie_Pratique&p=Autres&l3=L_horoscope_Ch__rie_FM&l4=L_horoscope_Ch__rie_FM_du_15_F__vrier_2010&media_url=http%3A%2F%2Fprod-nrjmedia.integra.fr%2Factive%2Fsound%2Fhoro-web-15-02_.mp3
