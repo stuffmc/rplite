@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Radio Podcast : Écouter Radios et Podcasts live sur internet et iPhone</title>
+  	<meta name="description" content="100% radio : Écoutez en live vos radios et podcasts préférés quand vous voulez !" />
+    <meta name="keywords" content="radio, podcast, radiopodcast, écouter, radios, podcasts, nrj, fun, funradio, virgin, virginradio, virgin radio, europe, europe 1, rtl, france, france inter, inter, france culture, culture, sky, skyrock, rock, pop, hip hop, rap, électro, variété, jazz, chérie, fm, chérie fm, tuner, fréquence, française, français, live, direct, oui, oui fm, radio fg, fg, radiofg, radionova, nova, ado, adofm, bfm, fip, génération, mfm, rfm, rire & chansons, rtl2, iphone, stream, voltage" />
+    <script src="jquery-1.4.4.js" type="text/javascript"></script>
+    <script>
+		$(function(){
+			$("article img").click(function() {
+				audio = $("article audio");
+				console.log(audio[0].currentTime);
+				if (audio[0].currentTime > 0) {
+					console.log("will pause");
+					audio[0].pause();
+				} else {
+					console.log("will play");
+					audio[0].play();
+				}
+				audio.addClass("show");
+			});
+		});
+	</script>
+	<style>
+		article			{ width:116px; height:110px; margin:12px; <!-- background:red; --> }
+		img				{ margin: 10px 13px 10px; width:90px; }
+		audio 			{ width:inherit; position: absolute; top: 97px; opacity: 0; }
+			audio.show 	{ opacity: .6; }
+	</style>
+    <meta name="csrf-param" content="authenticity_token"/>
+	<meta name="csrf-token" content="AIUyURH8Cv8NvYAvRbEx8QaE6oREXA2ygcHGjveEh3s="/>
+  </head>
+  <body>
+		<div id="radios">
+			<article>
+				<img alt="Europe 1" src="http://radiopodcast.fr/system/radios/3_europe1_medium.png" />
+				<audio  src="http://vipicecast.yacast.net/europe1" controls autobuffer></audio>
+				<figcaption>Europe 1</figcaption>
+			</article>		
+		</div>
+<!--
+		http://vipicecast.yacast.net:80/franceinter
+		http://cheriefm.proxycast.org/m/media/247015201548.mp3?c=Vie_Pratique&p=Autres&l3=L_horoscope_Ch__rie_FM&l4=L_horoscope_Ch__rie_FM_du_15_F__vrier_2010&media_url=http%3A%2F%2Fprod-nrjmedia.integra.fr%2Factive%2Fsound%2Fhoro-web-15-02_.mp3
+-->
+  </body>
+</html>
