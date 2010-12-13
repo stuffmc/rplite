@@ -37,7 +37,7 @@
 	//						console.log(source);
 	//						console.log(radio.find("audio")[0]);
 								radio.find("audio").attr("src", source);
-								radio.find("figcaption").text(source);
+								// radio.find("figcaption").text(source);
 	//						console.log(radio.find("audio")[0]);
 							}
 //							console.log($(".radio").size());
@@ -58,14 +58,40 @@
 //				console.log(audio);
 //				console.log(audio[0].currentTime);
 //				console.log($(this).hasClass("show"));
-//				console.log(audio.first().attr("src"));
+				console.log(audio.first().attr("src"));
 				if (audio.hasClass("show")) {
 //					console.log("will pause");
 					audio[0].pause();
 					audio.removeClass("show");
 				} else {
-//					console.log("will play");
+					console.log("will play");
 					audio[0].play();
+					// audio[0].load();
+					// audio.oncanplay = function(e) {
+					//   console.log("YO");
+					// 
+					// 
+					// 	
+					// }
+
+					
+					
+					$(audio).bind('playing', function() {
+					  console.log('Now playing...');
+					});
+
+					$(audio).bind('loadstart', function() {
+					  console.log('load start...');
+					});
+					
+					// audio[0].addEventListener("load", function() {
+					// 					audio[0].play();
+					// 			  console.log("YO");
+					// 			//						  audioElement.play();
+					// 				  // $(".duration span").html(audioElement.duration);
+					// 				  // $(".filename span").html(audioElement.src);
+					// 				}, true);
+					
 					audio.addClass("show");
 				}
 				
@@ -80,9 +106,29 @@
 				
 				
 			});
+			
+							$("audio").each(function(index, value) {
+								$(value).bind('canplay', function() {
+									// 								  console.log('canplay...');
+									// console.log($(value).parent());
+									// console.log($(value).parent().attr("class"));
+									// 	console.log($(value).parent().css("display"));
+									$(value).addClass("show");
+										value.play();
+											console.log($(value).attr("src"));
+//										console.log($(value).attr("preload"));
+//										$(value).parent().show();
+										$(value).parent().removeClass("radio");
+//								value.parent().css("display", "none");
+								$(value).parent().first().css("background", "red");
+//									console.log($(value).parent());
+								});
+							});
+			
 		});
 	</script>
 	<style type="text/css">
+		.radio			{ //display:none; }
 		body				{ font-family: Lucida Grande; font-size: 14px; <!-- background:yellow; --> }
 		img					{ margin: 10px 13px 0px; width:90px; }
 		audio 			{ width:inherit; position: relative; top: -45px; opacity: 0; }
@@ -157,7 +203,7 @@
   <body>
   	<header>Ajoutez cette application à votre écran de démarrage pour en profiter pleinement.</header>
 		<div id="radios">
-			<div class="radio">
+			<div class="radio" style="//display:none;">
 				<figure>
 					<div id="img">
 						<div class="bar1"></div>
@@ -172,7 +218,7 @@
 					<img/><br/>
 					<figcaption>Loading...</figcaption>
 				</figure>		
-				<audio controls autobuffer></audio>
+				<audio controls preload="auto" autobuffer></audio>
 			</div>
 		
 <!--
