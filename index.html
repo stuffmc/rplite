@@ -19,7 +19,8 @@
 	<script type="text/javascript">
 		$(function(){
 			baseURL = "http://radiopodcast.com";
-			$.getJSON(baseURL+'/radios.json', function(data) {
+			console.log(baseURL);
+			$.getJSON(baseURL+'/radios.json1', function(data) {
 		    $.each(data, function(i,item){
 		    	if (!item.radio.hide) {
 						var radio = $(".radio:first").clone(true);
@@ -78,17 +79,32 @@
 				});
 			});
 			
+			
+			
 		});
 	</script>
 	<style type="text/css">
-		body				 					{ font-family: Lucida Grande; font-size: 10px; }                                        
-		.logo				 					{ float:left; width:90px; height:90px; background:no-repeat; }                                                      
-		.speaker		 					{ margin: -2px 0px 0px 5px; width:inherit; height:inherit; background:url(speaker.svg) no-repeat; display:none; }   
-		audio 			 					{ width:inherit; position: relative; top: -45px; display:none; }                                                      
-			.radio audio.show 	{ opacity: .6; }
-		.radio		 	 					{ text-align: center; width:100px; height:125px; float:left; }            
-		figure img 	 					{ //display:none; }    
-		figcaption						{ clear:both; margin-right:10px;}                                                                                         
+		body				 							 	{ font-family: Lucida Grande; font-size: 10px; }                                                                                   
+		.logo				 							 	{ float:left; width:90px; height:90px; background:no-repeat; }                                                                     
+		.speaker		 							 	{ margin: -2px 0px 0px 5px; width:inherit; height:inherit; background:url(speaker.svg) no-repeat; display:none; }                  
+		audio 			 							 	{ /*width:inherit; position: relative; top: -45px; */display:none; }                                                                   
+/*			.radio audio.show 			 	{ opacity: .6; }                                                                                                                   */
+		.radio		 	 							 	{ text-align: center; width:100px; height:125px; float:left; }                                                                     
+		figcaption								 	{ clear:both; margin-right:10px;}                                                                                                  
+		@-webkit-keyframes slide 	{	from { width: 0px;} to { width: 90px; } }
+		.css3_bounce {
+				width:0px;
+				height:90px;
+				float:left;
+		}
+		
+		.css3_bounce.show {
+			-webkit-animation-name: slide;
+			-webkit-animation-duration: 1s;
+			width: 90px;
+			padding-top:0px;
+			vertical-align:middle;
+		}
 
 		/* position the bars and balls correctly (rotate them and translate them outward)*/
 		.bar1 {
@@ -173,6 +189,13 @@
 					<p><figcaption></figcaption></p>
 				</figure>		
 				<audio controls preload="auto" autobuffer></audio>
+			</div>
+			
+			<div class="css3_bounce">
+				<img src="rfm.png" />
+			</div>
+			<div class="css3_bounce">
+			<img src="europe1.png" />
 			</div>
   </body>
 </html>
