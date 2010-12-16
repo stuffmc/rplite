@@ -16,164 +16,13 @@
 	<meta name="csrf-token" content="AIUyURH8Cv8NvYAvRbEx8QaE6oREXA2ygcHGjveEh3s="/>
 
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript"></script>
-	<script type="text/javascript">
-		$(function(){
-			baseURL = "http://radiopodcast.com";
-			console.log(baseURL);
-			$.getJSON(baseURL+'/radios.json1', function(data) {
-		    $.each(data, function(i,item){
-		    	if (!item.radio.hide) {
-						var radio = $(".radio:first").clone(true);
-						radio.find("figcaption").text(item.radio.name);
-						radio.find("#img").hide();
-						radio.find(".logo").css("background-image", "url("+baseURL+item.radio.logo_url+")");
-						radio.css("display", "none");
-						$.get(baseURL+item.radio.stream_permalink+".xml", function(data) {
-							source = $(data).find("location").html();
-							if (source == undefined || source == "") {
-								radio.remove();
-							} else {
-								radio.find("audio").attr("src", source);
-							}
-						}, "text");
-						radio.appendTo('#radios');
-					}
-		    });
-		  });
-			
-			if (window.navigator.standalone == true) {  $("header").fadeOut(); } else { $("header").fadeIn();}
-			
-			$(".logo").click(function(e) {
-				audio = $(this).parent().parent().children("audio");
-				// console.log(audio.first().attr("src"));
-				if (audio.hasClass("show")) {
-					audio[0].pause();
-					audio.removeClass("show");
-				} else {
-					audio[0].play();
-
-					$(audio).bind('playing', function() {
-						$(this).parent().find(".speaker").fadeIn();
-					});
-
-					$(audio).bind('pause', function() {
-						$(this).parent().find(".speaker").fadeOut();
-					});
-					audio.addClass("show");
-				}
-				
-				$("audio").each(function(index, value) {
-					if (audio[0] != value) {
-						$(value).removeClass("show");
-						value.pause();
-					}
-				});
-			});
-			
-			$("audio").each(function(index, value) {
-				$(value).bind('canplay', function() {
-				  if ($(".radio:first").find("figcaption").html() == "") {
-						$(".radio:first").remove();
-					}
-					$(this).parent().first().css("display", "inline");
-				});
-			});
-			
-			
-			
-		});
-	</script>
-	<style type="text/css">
-		body				 							 	{ font-family: Lucida Grande; font-size: 10px; }                                                                                   
-		.logo				 							 	{ float:left; width:90px; height:90px; background:no-repeat; }                                                                     
-		.speaker		 							 	{ margin: -2px 0px 0px 5px; width:inherit; height:inherit; background:url(speaker.svg) no-repeat; display:none; }                  
-		audio 			 							 	{ /*width:inherit; position: relative; top: -45px; */display:none; }                                                                   
-/*			.radio audio.show 			 	{ opacity: .6; }                                                                                                                   */
-		.radio		 	 							 	{ text-align: center; width:100px; height:125px; float:left; }                                                                     
-		figcaption								 	{ clear:both; margin-right:10px;}                                                                                                  
-		@-webkit-keyframes slide 	{	from { width: 0px;} to { width: 90px; } }
-		.css3_bounce {
-				width:0px;
-				height:90px;
-				float:left;
-		}
-		
-		.css3_bounce.show {
-			-webkit-animation-name: slide;
-			-webkit-animation-duration: 1s;
-			width: 90px;
-			padding-top:0px;
-			vertical-align:middle;
-		}
-
-		/* position the bars and balls correctly (rotate them and translate them outward)*/
-		.bar1 {
-		  -moz-transform:rotate(0deg) translate(0, -40px);
-		  -webkit-transform:rotate(0deg) translate(0, -40px);opacity:0.12;
-		}
-		.bar2 {
-		  -moz-transform:rotate(45deg) translate(0, -40px);
-		  -webkit-transform:rotate(45deg) translate(0, -40px);opacity:0.25;
-		}
-		.bar3 {
-		  -moz-transform:rotate(90deg) translate(0, -40px);
-		  -webkit-transform:rotate(90deg) translate(0, -40px);opacity:0.37;
-		}
-		.bar4 {
-		  -moz-transform:rotate(135deg) translate(0, -40px);
-		  -webkit-transform:rotate(135deg) translate(0, -40px);opacity:0.50;
-		}
-		.bar5 {
-		  -moz-transform:rotate(180deg) translate(0, -40px);
-		  -webkit-transform:rotate(180deg) translate(0, -40px);opacity:0.62;
-		}
-		.bar6 {
-		  -moz-transform:rotate(225deg) translate(0, -40px);
-		  -webkit-transform:rotate(225deg) translate(0, -40px);opacity:0.75;
-		}
-		.bar7 {
-		  -moz-transform:rotate(270deg) translate(0, -40px);
-		  -webkit-transform:rotate(270deg) translate(0, -40px);opacity:0.87;
-		}
-		.bar8 {
-		  -moz-transform:rotate(315deg) translate(0, -40px);
-		  -webkit-transform:rotate(315deg) translate(0, -40px);opacity:1;
-		}
-		
-		#img {
-		  position:relative;
-		  width:100px;
-		  height:100px;
-		  margin-bottom:.22em;
-		  -moz-border-radius:100px;
-		  float:left;
-		  -moz-transform:scale(0.5);
-		  -webkit-transform:scale(0.5);
-		}
-		#img div {
-		  width:10px;
-		  height:30px;
-		  background:#000;
-		  position:absolute;
-		  top:35px;
-		  left:45px;
-		}
-		#img {
-		  -webkit-animation-name: rotateThis;
-		  -webkit-animation-duration:2s;
-		  -webkit-animation-iteration-count:infinite;
-		  -webkit-animation-timing-function:linear;
-		}
-		@-webkit-keyframes rotateThis {
-		  from {-webkit-transform:scale(0.5) rotate(0deg);}
-		  to {-webkit-transform:scale(0.5) rotate(360deg);}
-		} 
-	</style>
+	<script type="text/javascript" src="rplite.js"></script>
+  <link href="rplite.css" type="text/css" rel="stylesheet" />
   </head>
   <body>
   	<!-- <header>Ajoutez cette application à votre écran de démarrage pour en profiter pleinement.</header> -->
 		<div id="radios">
-			<div class="radio">
+			<div class="radio show">
 				<figure>
 					<div id="img">
 						<div class="bar1"></div>
@@ -191,11 +40,19 @@
 				<audio controls preload="auto" autobuffer></audio>
 			</div>
 			
-			<div class="css3_bounce">
-				<img src="rfm.png" />
+			<!-- <div id="r1" class="radio">
+				<div class="logo rfm">
+					<div class="speaker"></div>
+				</div>
+				RFM
 			</div>
-			<div class="css3_bounce">
-			<img src="europe1.png" />
-			</div>
+			
+			<div class="radio show">
+				<div class="logo europe1">
+					<div class="speaker"></div>
+				</div>
+				EUROPE
+			</div> -->
+			
   </body>
 </html>
