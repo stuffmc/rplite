@@ -1,24 +1,25 @@
 $(function(){
-	baseURL = "http://radiopodcast.com";
+	baseURL = "http://localhost:3000"; //"http://radiopodcast.com";
 	console.log(baseURL);
-	$.getJSON(baseURL+'/radios.json', function(data) {
+	$.getJSON(baseURL+'/radios.json?callback=?', function(data) {
     $.each(data, function(i,item){
-    	if (!item.radio.hide) {
+    	// if (!item.radio.hide) {
 				var radio = $(".radio:first").clone(true);
 				radio.find("figcaption").text(item.radio.name);
 				radio.find("#img").hide();
 				radio.find(".logo").css("background-image", "url("+baseURL+item.radio.logo_url+")");
 				radio.css("display", "none");
-				$.get(baseURL+item.radio.stream_permalink+".xml", function(data) {
-					source = $(data).find("location").html();
-					if (source == undefined || source == "") {
-						radio.remove();
-					} else {
-						radio.find("audio").attr("src", source);
-					}
-				}, "text");
+				radio.find("audio").attr("src", item.radio.stream);
+				// $.get(baseURL+item.radio.stream_permalink+".xml?callback=?", function(data) {
+				// 	source = $(data).find("location").html();
+				// 	if (source == undefined || source == "") {
+				// 		radio.remove();
+				// 	} else {
+				// 		radio.find("audio").attr("src", source);
+				// 	}
+				// }, "text");
 				radio.appendTo('#radios');
-			}
+			// }
     });
   });
 	

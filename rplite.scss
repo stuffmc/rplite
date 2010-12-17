@@ -5,7 +5,7 @@ body				 							 	{ font-family: Lucida Grande; font-size: 10px; }
 	@-webkit-keyframes slide 	{	from { width: 0px;} to { width: $s; } }
 figcaption 									{	margin: 10px; display: block; width: 70px; overflow: hidden; clear:both; }
 .logo				 							 	{ float:left; width:$s; height:$s; background:no-repeat; }                                                                     
-.speaker		 							 	{ margin: -2px 0px 0px 5px; width:inherit; height:inherit; background:url(speaker.svg) no-repeat; display:none; }                  
+.speaker		 							 	{ margin: -2px 0px 0px 5px; width:inherit; height:inherit; background:url(img/speaker.svg) no-repeat; display:none; }                  
 audio 			 							 	{ display:none; }
 
 .rfm { background-image:url(rfm.png); }
