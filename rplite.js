@@ -3,30 +3,20 @@ $(function(){
 	console.log(baseURL);
 	$.getJSON(baseURL+'/radios.json?callback=?', function(data) {
     $.each(data, function(i,item){
-    	// if (!item.radio.hide) {
-				var radio = $(".radio:first").clone(true);
-				radio.find("figcaption").text(item.radio.name);
-				radio.find("#img").hide();
-				radio.find(".logo").css("background-image", "url("+baseURL+item.radio.logo_url+")");
-				radio.css("display", "none");
-				radio.find("audio").attr("src", item.radio.stream);
-				// $.get(baseURL+item.radio.stream_permalink+".xml?callback=?", function(data) {
-				// 	source = $(data).find("location").html();
-				// 	if (source == undefined || source == "") {
-				// 		radio.remove();
-				// 	} else {
-				// 		radio.find("audio").attr("src", source);
-				// 	}
-				// }, "text");
-				radio.appendTo('#radios');
-			// }
+			var radio = $("figure:first").clone(true);
+			radio.find("figcaption").text(item.radio.name);
+			radio.find("#img").hide();
+			radio.find(".logo").css("background-image", "url("+baseURL+item.radio.logo_url+")");
+			radio.addClass("hide");
+			radio.find("audio").attr("src", item.radio.stream);
+			radio.appendTo('body');
     });
   });
 	
 	if (window.navigator.standalone == true) {  $("header").fadeOut(); } else { $("header").fadeIn();}
 	
 	$(".logo").click(function(e) {
-		audio = $(this).parent().parent().children("audio");
+		audio = $(this).parent().children("audio");
 		if (audio.hasClass("show")) {
 			audio[0].pause();
 			audio.removeClass("show");
@@ -53,10 +43,11 @@ $(function(){
 	
 	$("audio").each(function(index, value) {
 		$(value).bind('canplay', function() {
-		  if ($(".radio:first").find("figcaption").html() == "") {
-				$(".radio:first").remove();
+		  if ($("figure:first").find("figcaption").html() == "") {
+				$("figure:first").remove();
 			}
-			$(this).parent().first().css("display", "inline");
+			$(this).parent().removeClass("hide");
+			$(this).parent().addClass("show");
 		});
 	});
 });
