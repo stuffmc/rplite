@@ -1,5 +1,6 @@
 $(function(){
-	baseURL = "http://localhost:3000"; //"http://radiopodcast.com";
+	$("figure:first").removeClass("hide");
+	baseURL = "http://radiopodcast.com:3000"; // "http://localhost:3000"; // "http://staging.radiopodcast.com";
 	console.log(baseURL);
 	$.getJSON(baseURL+'/radios.json?callback=?', function(data) {
     $.each(data, function(i,item){
@@ -7,8 +8,9 @@ $(function(){
 			radio.find("figcaption").text(item.radio.name);
 			radio.find("#img").hide();
 			radio.find(".logo").css("background-image", "url("+baseURL+item.radio.logo_url+")");
-			radio.addClass("hide");
-			radio.find("audio").attr("src", item.radio.stream);
+			radio.addClass("hide"); 
+ 			radio.find("audio").attr("src", item.radio.stream);
+ 			radio.find("audio")[0].play();
 			radio.appendTo('body');
     });
   });
@@ -43,6 +45,8 @@ $(function(){
 	
 	$("audio").each(function(index, value) {
 		$(value).bind('canplay', function() {
+			$(this)[0].pause();
+			console.log($(this).attr("src")+" can play!");
 		  if ($("figure:first").find("figcaption").html() == "") {
 				$("figure:first").remove();
 			}

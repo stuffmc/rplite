@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script type="text/javascript">
+			function load() {   
+				
+				// var audio = new Audio("http://stream.radiocampusparis.org:8000/stream_rcp.mp3");
+				// audio.play();
+				
+				var myAudio = document.getElementsByTagName('audio')[0];
+				// myAudio.play();
+				myAudio.addEventListener('canplay', function () {
+					// myAudio.pause();
+				  console.log('Audio Ready to play!');
+				});
+
+				myAudio.addEventListener('playing', function () {
+				  console.log('Audio playing!');
+				});
+
+				myAudio.addEventListener('pause', function () {
+				  console.log('Audio paused!');
+				});
+
+				myAudio.addEventListener('loadeddata', function () {
+				  console.log('Audio loadeddata!');
+				});
+
+				myAudio.addEventListener('canplaythrough', function () {
+				  console.log('Audio canplaythrough!');
+				});
+
+				// var myVideo = document.getElementsByTagName('video')[0];
+				// myVideo.addEventListener('canplay', function () {
+				//   console.log('Video Ready to play!');
+				// });
+			}   
+		</script>	
+	</head>
+ 	<body onload="load();">   
+		<audio controls src="http://stream.radiocampusparis.org:8000/stream_rcp.mp3" preload="auto" autobuffer></audio>
+		<!-- <video controls width="300px"><source src="http://media.railscasts.com/videos/244_gravatar.mov" type="video/mp4"></video> -->
+	  </body>
+</html>
