@@ -1,44 +1,153 @@
 <!DOCTYPE html>
 <html>
 	<head>
+	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">  
 		<script type="text/javascript">
 			function load() {   
 				
 				// var audio = new Audio("http://stream.radiocampusparis.org:8000/stream_rcp.mp3");
 				// audio.play();
 				
-				var myAudio = document.getElementsByTagName('audio')[0];
-				// myAudio.play();
+				// myAudio = document.getElementsByTagName('audio')[0];
+				// myAudio = new Audio("../claps.mp3");
+				myAudio = new Audio("http://vipicecast.yacast.net:80/bfm");
+				// myAudio = new Audio("http://stream.radiocampusparis.org:8000/stream_rcp.mp3");
+				myAudio.load();
+				myAudio.play();
 				myAudio.addEventListener('canplay', function () {
 					// myAudio.pause();
-				  console.log('Audio Ready to play!');
+				  log('Audio Ready to play!');
 				});
 
 				myAudio.addEventListener('playing', function () {
-				  console.log('Audio playing!');
+				  log('Audio playing!');
 				});
 
 				myAudio.addEventListener('pause', function () {
-				  console.log('Audio paused!');
+				  log('Audio pause!');
+				});
+
+				myAudio.addEventListener('paused', function () {
+				  log('Audio paused!');
 				});
 
 				myAudio.addEventListener('loadeddata', function () {
-				  console.log('Audio loadeddata!');
+				  log('Audio loadeddata!');
 				});
 
 				myAudio.addEventListener('canplaythrough', function () {
-				  console.log('Audio canplaythrough!');
+				  log('Audio canplaythrough!');
 				});
 
+				myAudio.addEventListener('dataunavailable', function () {
+				  log('Audio dataunavailable!');
+				});
+
+				myAudio.addEventListener('seeking', function () {
+				  log('Audio seeking!');
+				});
+				
+				myAudio.addEventListener('waiting', function () {
+				  log('Audio waiting!');
+				});
+				
+				
+				myAudio.addEventListener('suspend', function () {
+				  log('Audio suspend!');
+				});
+				
+				myAudio.addEventListener('stalled', function () {
+				  log('Audio stalled!');
+				});
+				
+				
+				// myAudio.load();
+				// myAudio.play();
+				
+
+// myAudio.addEventListener('', function () {
+//   log('Audio !');
+// });
 				// var myVideo = document.getElementsByTagName('video')[0];
 				// myVideo.addEventListener('canplay', function () {
-				//   console.log('Video Ready to play!');
+				//   log('Video Ready to play!');
 				// });
 			}   
+			
+			function log(text) {
+				console.log(text + ' ' + new Date());
+			}
 		</script>	
+		<style>
+		#speaker { background:url(img/speaker.svg) no-repeat; width:100px; height:100px; -webkit-animation-name: opacity1to0; -webkit-animation-duration: 1s;
+	 -webkit-animation-iteration-count: infinite;
+	 -webkit-animation-direction: alternate; }
+		@-webkit-keyframes opacity1to0 	{	from { opacity: 1;} to { opacity: 0; } }
+		
+		</style>
 	</head>
- 	<body onload="load();">   
-		<audio controls src="http://stream.radiocampusparis.org:8000/stream_rcp.mp3" preload="auto" autobuffer></audio>
-		<!-- <video controls width="300px"><source src="http://media.railscasts.com/videos/244_gravatar.mov" type="video/mp4"></video> -->
+ 	<body onload="//load();">   
+	<!-- <div id=speaker></div> -->
+	<a href="#" onClick="myAudio.play();">Play</a> - <a href="#" onClick="myAudio.pause();">Pause</a><br><br><br><br>
+		<audio controls src="http://vipicecast.yacast.net:80/bfm" preload="auto" autobuffer></audio><!-- ../claps.mp3 --> <!-- http://vipicecast.yacast.net:80/bfm --> <!-- http://stream.radiocampusparis.org:8000/stream_rcp.mp3 -->
+		<!-- <video controls width="300px"><source src="http://media.railscasts.com/videos/244_gravatar.mov" type="video/mp4"></video> -->  <!-- /Users/mc/Music/iTunes/iTunes%20Music/Music/Akhenaton/Soldats%20de%20Fortune/03%20Troie.m4a -->
+			
+			
+					<script type="text/javascript">
+					myAudio = document.getElementsByTagName('audio')[0];
+					// myAudio = new Audio("../claps.mp3"); //"http://stream.radiocampusparis.org:8000/stream_rcp.mp3");
+					myAudio.addEventListener('canplay', function () {
+						// myAudio.pause();
+					  log('Audio Ready to play!');
+					});
+					
+					myAudio.addEventListener('playing', function () {
+					  log('Audio playing!');
+					});
+					
+					myAudio.addEventListener('pause', function () {
+					  log('Audio pause!');
+					});
+					
+					myAudio.addEventListener('paused', function () {
+					  log('Audio paused!');
+					});
+					
+					myAudio.addEventListener('loadeddata', function () {
+					  log('Audio loadeddata!');
+					});
+					
+					myAudio.addEventListener('canplaythrough', function () {
+					  log('Audio canplaythrough!');
+					});
+					
+					myAudio.addEventListener('dataunavailable', function () {
+					  log('Audio dataunavailable!');
+					});
+					
+					myAudio.addEventListener('seeking', function () {
+					  log('Audio seeking!');
+					});
+					
+					myAudio.addEventListener('waiting', function () {
+					  log('Audio waiting!');
+					});
+					
+					
+					myAudio.addEventListener('suspend', function () {
+					  log('Audio suspend!');
+						// myAudio.load();
+						myAudio.play();
+						
+					});
+					
+					myAudio.addEventListener('stalled', function () {
+					  log('Audio stalled!');
+					});
+
+
+					// myAudio.load();
+					// myAudio.play();
+					</script>
 	  </body>
 </html>

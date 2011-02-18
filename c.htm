@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">  
+		<script type="text/javascript">
+			function load() {   
+				myAudio = document.getElementsByTagName('audio')[0];
+				myAudio.addEventListener('canplay', function () {
+				  log('Audio Ready to play!');
+				});
+				myAudio.addEventListener('playing', function () {
+				  log('Audio playing!');
+				});
+				myAudio.addEventListener('pause', function () {
+				  log('Audio pause!');
+				});
+				myAudio.addEventListener('paused', function () {
+				  log('Audio paused!');
+				});
+				myAudio.addEventListener('loadeddata', function () {
+				  log('Audio loadeddata!');
+				});
+				myAudio.addEventListener('canplaythrough', function () {
+				  log('Audio canplaythrough!');
+				});
+				myAudio.addEventListener('dataunavailable', function () {
+				  log('Audio dataunavailable!');
+				});
+				myAudio.addEventListener('seeking', function () {
+				  log('Audio seeking!');
+				});
+				myAudio.addEventListener('waiting', function () {
+				  log('Audio waiting!');
+				});
+				myAudio.addEventListener('suspend', function () {
+				  log('Audio suspend!');
+				});
+				myAudio.addEventListener('stalled', function () {
+				  log('Audio stalled!');
+				});
+			}   
+			
+			function log(text) {
+				var logText = text+" "+new Date();
+				console.log(logText);
+				document.getElementsByTagName('body') [0].innerHTML+="<br/>"+logText;
+			}
+		</script>	
+	</head>
+ 	<body onload="load();">   
+		<h1><a href="#" onClick="myAudio.play();">Play</a> - <a href="#" onClick="myAudio.pause();">Pause</a></h1>
+		<audio controls src="http://vipicecast.yacast.net:80/bfm" preload="auto" autobuffer></audio>
+  </body>
+</html>

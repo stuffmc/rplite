@@ -1,16 +1,17 @@
 $(function(){
 	$("figure:first").removeClass("hide");
-	baseURL = "http://radiopodcast.com:3000"; // "http://localhost:3000"; // "http://staging.radiopodcast.com";
+	baseURL = "http://radiopodcast.com:3000"; ; //"http://localhost:3000"; // "http://staging.radiopodcast.com"; // 
 	console.log(baseURL);
 	$.getJSON(baseURL+'/radios.json?callback=?', function(data) {
     $.each(data, function(i,item){
-			var radio = $("figure:first").clone(true);
+			var radio = $("figure:last").clone(true);
 			radio.find("figcaption").text(item.radio.name);
 			radio.find("#img").hide();
 			radio.find(".logo").css("background-image", "url("+baseURL+item.radio.logo_url+")");
 			radio.addClass("hide"); 
+			// radio.addClass("show");
  			radio.find("audio").attr("src", item.radio.stream);
- 			radio.find("audio")[0].play();
+ 			// radio.find("audio")[0].play();
 			radio.appendTo('body');
     });
   });
@@ -23,14 +24,24 @@ $(function(){
 			audio[0].pause();
 			audio.removeClass("show");
 		} else {
+			// console.log($(this).parent().html());
+			console.log(audio.attr("src")+' will play');
+			// audio[0].load();
 			audio[0].play();
+			var speaker = $(this).parent().find(".speaker");
+			speaker.fadeIn();
+			if (audio[0].paused || audio[0].currentTime == 0) {
+				speaker.addClass("blink");
+			}
 
 			$(audio).bind('playing', function() {
-				$(this).parent().find(".speaker").fadeIn();
+				console.log($(this).attr("src")+" playing!");
+				speaker.removeClass("blink");
+				speaker.fadeIn();
 			});
 
 			$(audio).bind('pause', function() {
-				$(this).parent().find(".speaker").fadeOut();
+				speaker.fadeOut();
 			});
 			audio.addClass("show");
 		}
@@ -44,9 +55,9 @@ $(function(){
 	});
 	
 	$("audio").each(function(index, value) {
-		$(value).bind('canplay', function() {
-			$(this)[0].pause();
-			console.log($(this).attr("src")+" can play!");
+		$(value).bind('suspend', function() {
+			// $(this)[0].pause();
+			// console.log($(this).attr("src")+" can play!");
 		  if ($("figure:first").find("figcaption").html() == "") {
 				$("figure:first").remove();
 			}
