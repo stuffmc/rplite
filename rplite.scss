@@ -1,13 +1,14 @@
+/* sass --watch rplite.scss:rplite.css -t compressed */
 $s:90px;
-body				 							 	{ font-family:Lucida Grande; font-size: 10px; overflow:hidden; }                                                                                   
+body				 							 	{ font-family:Lucida Grande; font-size: 10px; overflow:hidden; background: #000; color: #FFF;}                                                                                   
 figure		 	 							 	{ text-align:center; width:0px; height:125px; float:left; margin:5px; }                                                                     
 	figure#onair							{ background:red; width:90px; }
 	figure.hide		 	 					{ display: none; } 
 	figure.show 							{ -webkit-animation-name: slide; -webkit-animation-duration: 1s; width: $s; display: inline; }
 	@-webkit-keyframes slide 	{	from { width: 0px;} to { width: $s; } }
-figcaption 									{	margin: 10px; display: block; width: 70px; overflow: hidden; clear:both; }
+figcaption 									{	margin: 10px; display: block; width: 70px; overflow: hidden; clear:both;}
 .logo				 							 	{ float:left; width:$s; height:$s; background:no-repeat; }                                                                     
-.speaker		 							 	{ margin: -2px 0px 0px 5px; width:inherit; height:inherit; background:url(img/speaker.svg) no-repeat; display:none; }                  
+.speaker		 							 	{ margin: -2px 0px 0px 5px; width:$s; height:$s; background:url(img/speaker.png) no-repeat; display:none; }                  
 .speaker.blink 						{ display:block; -webkit-animation-name: opacity1to0; -webkit-animation-duration: 1s; -webkit-animation-iteration-count: infinite;
 -webkit-animation-direction: alternate; }
 	@-webkit-keyframes opacity1to0 	{	from { opacity: 1;} to { opacity: 0; } }
@@ -62,7 +63,7 @@ figcaption 									{	margin: 10px; display: block; width: 70px; overflow: hidde
 #img div {
   width:10px;
   height:30px;
-  background:#000;
+  background:#EA008B;
   position:absolute;
   top:35px;
   left:45px;
