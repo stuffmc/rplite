@@ -18,7 +18,7 @@ $(function(){
 	
 	if (window.navigator.standalone == true) {  $("header").fadeOut(); } else { $("header").fadeIn();}
 	
-	$(".logo").click(function(e) {
+	$(".logo,figcaption").click(function(e) {
 		audio = $(this).parent().children("audio");
 		if (audio.hasClass("show")) {
 			audio[0].pause();

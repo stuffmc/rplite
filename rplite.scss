@@ -1,6 +1,6 @@
 /* sass --watch rplite.scss:rplite.css -t compressed */
 $s:90px;
-body				 							 	{ font-family:Lucida Grande; font-size: 10px; overflow:hidden; background: #000; color: #FFF;}                                                                                   
+body				 							 	{ font-family:Lucida Grande; font-size: 11px; overflow:hidden; background: url(img/rp_app_background@2x.png); color: #FFF;}                                                                                   
 figure		 	 							 	{ text-align:center; width:0px; height:125px; float:left; margin:5px; }                                                                     
 	figure#onair							{ background:red; width:90px; }
 	figure.hide		 	 					{ display: none; } 
