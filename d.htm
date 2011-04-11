@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">  
+	<script type="text/javascript" src="SoundManager2/script/soundmanager2.js"></script>
+
+
+	</head>
+ 	<body>  
+	 loaded
+		<script type="text/javascript">
+		
+		
+		soundManager.url = 'SoundManager2/swf/'; 
+		soundManager.useFlashBlock = false;
+		soundManager.debugFlash = true;
+
+		soundManager.onload = function() {
+		  soundManager.createSound('helloWorld','http://vipicecast.yacast.net:80/bfm');
+		  soundManager.play('helloWorld');
+		};
+
+
+		</script>	</body>
+</html>

@@ -5,6 +5,12 @@
 		<script type="text/javascript">
 			function load() {   
 				myAudio = document.getElementsByTagName('audio')[0];
+				myAudio.addEventListener('progress', function () {
+				  log('Audio progress!');
+				});
+				myAudio.addEventListener('loadstart', function () {
+				  log('Audio loadstart!');
+				});
 				myAudio.addEventListener('canplay', function () {
 				  log('Audio Ready to play!');
 				});
@@ -49,6 +55,6 @@
 	</head>
  	<body onload="load();">   
 		<h1><a href="#" onClick="myAudio.play();">Play</a> - <a href="#" onClick="myAudio.pause();">Pause</a></h1>
-		<audio controls src="http://vipicecast.yacast.net:80/bfm" preload="auto" autobuffer></audio>
+		<audio controls src="http://vipicecast.yacast.net:80/bfm" preload="auto" autobuffer autoplay="autoplay"></audio>
   </body>
 </html>
