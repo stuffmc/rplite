@@ -3,7 +3,7 @@ body {
   font-family: Lucida Grande;
   font-size: 11px;
   overflow: hidden;
-  background: #000;
+  background: black url(img/rp_app_background@2x.png);
   color: #FFF; }
 
 figure {
@@ -67,8 +67,13 @@ figcaption {
   to {
     opacity: 0; } }
 
-/*#sm2-container    { position: absolute; top: -200px; }
-*/
+embed {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 0px;
+  height: 0px; }
+
 @font-face {
   font-family: 'DanielBold';
   src: url("fonts/danielbd-webfont.eot");

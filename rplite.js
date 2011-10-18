@@ -3,8 +3,9 @@ $(function(){
   $("figure:first").removeClass("hide");
   // baseURL = "http://radiopodcast.com:3000"; ; //"http://localhost:3000"; 
   // baseURL = "http://staging.radiopodcast.com"; 
+  baseURL = "http://radiopodcast.com"; 
   // baseURL = "http://bb.local:3000";
-  baseURL = "http://dev.futuretap.com:3000";
+  // baseURL = "http://dev.futuretap.com:3000";
   // console.log(baseURL);
   soundManager.url = 'SoundManager2/swf/';
   soundManager.debugMode = false;
@@ -21,40 +22,27 @@ $(function(){
       console.log("JSON LOADED");
       console.log(jqXHR);
       $.each(data, function(i,item){
-        // console.log(item);
         if (item.radio.stream != "") {
           var radio = $("figure:last").clone(true);
           radio.find("figcaption").text(item.radio.name);
           radio.find("#img").hide();
           radio.find(".logo").css("background-image", "url("+baseURL+item.radio.logo_url+")");
-                // radio.addClass("hide"); 
-          // radio.addClass("show");
-          // console.log("before create")
-          // console.log(item.radio.stream);
           soundManager.createSound(item.radio.name, item.radio.stream);
-          // soundManager.load(item.radio.name, {
-            // onload: function() {
-            //   console.log(this.sID+' data error.');
-            //   // this.onposition(this.duration - 5000, function() {
-            //   //       console.log('the sound ' + this.sID + ' is now at position ' + this.position);
-            //   //     });
-            // }
-          // });
-          // console.log("after create")
           $("h1").slideUp();
           radio.appendTo('#radios');
           radio.slideDown();
         }
       });
-    }).error(function() { alert("error"); }).complete(function() { 
+    }).error(function(  jqXHR, textStatus, errorThrown) {
+      console.log("error " + textStatus);
+      console.log("incoming Text " + jqXHR.responseText);
+    }).complete(function() { 
       if ($("figure:first").find("figcaption").html() == "") {
           $("figure:first").remove();
       }
       $("figcaption").removeClass("hide");
       $("h2").css("display", "block");
-      
       console.log("complete"); 
-      
     });
     
     console.log("after");
@@ -97,6 +85,7 @@ $(function(){
             },
             onpause: function() {
               speaker.fadeOut();
+              console.log('PAUSED');
             },
             onstop: function() {
               speaker.fadeOut();
