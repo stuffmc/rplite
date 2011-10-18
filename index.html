@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>RadioPodcast : Écouter Radios et Podcasts live sur internet et iPhone</title>
+  <title>RadioPodcast : Écouter Radios et Podcasts live sur internet, iPhone & Android</title>
 	<link href='img/favicon.ico' rel='shortcut icon' type='image/x-icon'>
   <link rel="apple-touch-icon" href="http://radiopodcast.fr/images/RP_logo_web.png"/>  
     
@@ -28,11 +28,15 @@
 			<figcaption>On Air</figcaption>
 		</figure> -->
     <h1 class="blink"><img src="img/RadioPodcastLogoGlossy@2x.png"><br>Loading...<br>Chargement...</h1>
-		<figure class="hide">
-			<div class="logo"><div class="speaker"></div></div>
-			<figcaption class="hide"></figcaption>
-			<audio preload="auto" autobuffer></audio>
-		</figure>		
+    
+    <div id="radios">
+  		<figure class="hide">
+  			<div class="logo"><div class="speaker"></div></div>
+  			<figcaption class="hide"></figcaption>
+  			<audio preload="auto" autobuffer></audio>
+  		</figure>
+    </div>
+		<h2><a href="#" onclick="window.location.reload();">Reload - Recharger</a></h2>
 
 		<!-- <div id="r1" class="radio">
 			<div class="logo rfm">

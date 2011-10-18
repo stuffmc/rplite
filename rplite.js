@@ -1,8 +1,10 @@
 $(function(){
+  console.log("LOADED");
   $("figure:first").removeClass("hide");
   // baseURL = "http://radiopodcast.com:3000"; ; //"http://localhost:3000"; 
   // baseURL = "http://staging.radiopodcast.com"; 
-  baseURL = "http://bb.local:3000";
+  // baseURL = "http://bb.local:3000";
+  baseURL = "http://dev.futuretap.com:3000";
   // console.log(baseURL);
   soundManager.url = 'SoundManager2/swf/';
   soundManager.debugMode = false;
@@ -13,8 +15,10 @@ $(function(){
   soundManager.onload = function() {
     // soundManager.useHTML5Audio = true;
     soundManager.autoLoad = true;
+    console.log("SOUNDMANAGER LOADED");
 
     $.getJSON(baseURL+'/radios.json?callback=?', function(data, textStatus, jqXHR) {
+      console.log("JSON LOADED");
       console.log(jqXHR);
       $.each(data, function(i,item){
         // console.log(item);
@@ -38,7 +42,7 @@ $(function(){
           // });
           // console.log("after create")
           $("h1").slideUp();
-          radio.appendTo('body');
+          radio.appendTo('#radios');
           radio.slideDown();
         }
       });
@@ -47,7 +51,7 @@ $(function(){
           $("figure:first").remove();
       }
       $("figcaption").removeClass("hide");
-      
+      $("h2").css("display", "block");
       
       console.log("complete"); 
       
@@ -63,7 +67,7 @@ $(function(){
           // audio = $(this).parent().children("audio");
       figcaption = $(this).parent().children("figcaption");
       var radio = figcaption.html();
-      console.log(radio);
+      console.log(radio + ' clicked');
       var stream = soundManager.getSoundById(radio)
       if (stream && stream != undefined) {
         if (figcaption.hasClass("show")) {
@@ -77,6 +81,7 @@ $(function(){
 
           speaker.fadeIn();
           soundManager.stopAll();
+          // soundManager.load(radio);
           soundManager.play(radio, {
             ondataerror: function() {
               console.log(this.sID+' data error.');
@@ -95,24 +100,12 @@ $(function(){
             },
             onstop: function() {
               speaker.fadeOut();
-            }         
+              console.log('STOPPED');
+            },
+            onload: function() {
+              speaker.addClass("blink");
+            }
           });
-
-          // if (audio[0].paused || audio[0].currentTime == 0) {
-          if (stream.paused || stream.position == 0) {
-            speaker.addClass("blink");
-          }
-
-          // $(audio).bind('playing', function() {
-          // $(audio).bind('playing', function() {
-          //   console.log($(this).attr("src")+" playing!");
-          //   speaker.removeClass("blink");
-          //   speaker.fadeIn();
-          // });
-
-          // $(audio).bind('pause', function() {
-          //   speaker.fadeOut();
-          // });
           figcaption.addClass("show");
         }
       }

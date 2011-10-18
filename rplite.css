@@ -3,7 +3,7 @@ body {
   font-family: Lucida Grande;
   font-size: 11px;
   overflow: hidden;
-  background: black url(img/rp_app_background@2x.png);
+  background: #000;
   color: #FFF; }
 
 figure {
@@ -67,10 +67,8 @@ figcaption {
   to {
     opacity: 0; } }
 
-#sm2-container {
-  position: absolute;
-  top: -200px; }
-
+/*#sm2-container    { position: absolute; top: -200px; }
+*/
 @font-face {
   font-family: 'DanielBold';
   src: url("fonts/danielbd-webfont.eot");
@@ -78,24 +76,28 @@ figcaption {
   font-weight: normal;
   font-style: normal; }
 
-/*@font-face {
-    font-family: 'ChunkFiveRegular';
-    src: url('fonts/Chunkfive-webfont.eot');
-    src: url('fonts/Chunkfive-webfont.eot?iefix') format('eot'),
-         url('fonts/Chunkfive-webfont.woff') format('woff'),
-         url('fonts/Chunkfive-webfont.ttf') format('truetype'),
-         url('fonts/Chunkfive-webfont.svg#webfont90E2uSjN') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}*/
+@font-face {
+  font-family: 'ChunkFiveRegular';
+  src: url("fonts/Chunkfive-webfont.eot");
+  src: url("fonts/Chunkfive-webfont.eot?iefix") format("eot"), url("fonts/Chunkfive-webfont.woff") format("woff"), url("fonts/Chunkfive-webfont.ttf") format("truetype"), url("fonts/Chunkfive-webfont.svg#webfont90E2uSjN") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+h1, h2 {
+  text-align: center; }
+
 h1 {
   display: block;
   -webkit-animation-name: opacity1to0;
   -webkit-animation-duration: 1s;
   -webkit-animation-iteration-count: infinite;
   -webkit-animation-direction: alternate;
-  font: 40px 'DanielBold', Arial, sans-serif;
-  text-align: center; }
+  font: 40px 'DanielBold', Arial, sans-serif; }
+
+h2 {
+  font: 14px 'ChunkFiveRegular', Arial, sans-serif;
+  clear: both;
+  display: none; }
 
 /*.rfm { background-image:url(rfm.png); }
 .europe1 { background-image:url(europe1.png); }
