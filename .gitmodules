@@ -1,3 +1,6 @@
 [submodule "SoundManager2"]
 	path = SoundManager2
 	url = https://github.com/scottschiller/SoundManager2.git
+[submodule "soundcloud-custom-player"]
+	path = soundcloud-custom-player
+	url = https://github.com/soundcloud/soundcloud-custom-player.git

@@ -2,24 +2,59 @@
 <html>
 	<head>
 	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">  
-	<script type="text/javascript" src="SoundManager2/script/soundmanager2.js"></script>
+  <script type="text/javascript" src="SoundManager2/script/soundmanager2.js"></script>
 
+  <link rel="stylesheet" href="soundcloud/css/sc-player-standard.css" type="text/css">
+  <link rel="stylesheet" href="soundcloud/css/sc-player.css" type="text/css">
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
 
 	</head>
  	<body>  
+ 	  
+    <a href="http://soundcloud.com/matas/hobnotropic" class="sc-player">My new dub track</a>
+    <!-- <a href="http://vipicecast.yacast.net:80/bfm" class="sc-player">My new dub track</a> -->
+    
+ 	  
+ 	  <a href="soundcloud-custom-player/examples/sc-player-minimal.html">soundcloud-custom-player/examples/sc-player-minimal.html</a>
 	 loaded
 		<script type="text/javascript">
 		
+    soundManager.url = 'SoundManager2/swf/'; 
+    soundManager.useFlashBlock = false;
+        soundManager.debugFlash = true;
+    
+    soundManager.onload = function() {
+      soundManager.createSound('helloWorld','http://vipicecast.yacast.net:80/bfm');
+      soundManager.useHTML5Audio = true;
+      soundManager.autoLoad = true;
+      // soundManager.autoPlay = true;
+       
+      // soundManager.stream = true;
+        
+      // soundManager.load('helloWorld');
+      soundManager.play('helloWorld');
+      
+      //       var pElement = document.getElementById("myVideo");
+      // 
+      // pElement.load();
+      // pElement.play();
+    	
+    };
+    
+    // window.onload = function() {
+    //  var pElement = document.getElementById("helloWorld");
+    // 
+    //  pElement.load();
+    //  pElement.play();
+    // };
+
+
+		</script>	
+ 	  <a href="#" onclick="soundManager.stop('helloWorld');">stop</a>
+ 	  <a href="#" onclick="soundManager.play('helloWorld');">play</a>
 		
-		soundManager.url = 'SoundManager2/swf/'; 
-		soundManager.useFlashBlock = false;
-		soundManager.debugFlash = true;
-
-		soundManager.onload = function() {
-		  soundManager.createSound('helloWorld','http://vipicecast.yacast.net:80/bfm');
-		  soundManager.play('helloWorld');
-		};
-
-
-		</script>	</body>
+		
+    <script type="text/javascript" src="soundcloud/js/soundcloud.player.api.js"></script>
+    <script type="text/javascript" src="soundcloud/js/sc-player.js"></script>
+		</body>
 </html>

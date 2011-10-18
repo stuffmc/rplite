@@ -1,80 +1,52 @@
 /* sass --watch rplite.scss:rplite.css -t compressed */
 $s:90px;
-body				 							 	{ font-family:Lucida Grande; font-size: 11px; overflow:hidden; background: url(img/rp_app_background@2x.png); color: #FFF;}                                                                                   
-figure		 	 							 	{ text-align:center; width:0px; height:125px; float:left; margin:5px; }                                                                     
+body				 							 	{ font-family:Lucida Grande; font-size: 11px; overflow:hidden; background: #000; color: #FFF;}                                                                                   
+figure		 	 							 	{ text-align:center; width:90px; height:125px; float:left; margin:5px; }
 	figure#onair							{ background:red; width:90px; }
 	figure.hide		 	 					{ display: none; } 
 	figure.show 							{ -webkit-animation-name: slide; -webkit-animation-duration: 1s; width: $s; display: inline; }
 	@-webkit-keyframes slide 	{	from { width: 0px;} to { width: $s; } }
 figcaption 									{	margin: 10px; display: block; width: 70px; overflow: hidden; clear:both;}
 .logo				 							 	{ float:left; width:$s; height:$s; background:no-repeat; }                                                                     
-.speaker		 							 	{ margin: -2px 0px 0px 5px; width:$s; height:$s; background:url(img/speaker.png) no-repeat; display:none; }                  
-.speaker.blink 						{ display:block; -webkit-animation-name: opacity1to0; -webkit-animation-duration: 1s; -webkit-animation-iteration-count: infinite;
--webkit-animation-direction: alternate; }
-	@-webkit-keyframes opacity1to0 	{	from { opacity: 1;} to { opacity: 0; } }
+.speaker		 							 	{ margin: -2px 0px 0px 5px; width:$s; height:$s; background:url(img/speaker.png) no-repeat; display:none; } 
+@mixin blink {
+  display:block; 
+  -webkit-animation-name: opacity1to0; 
+  -webkit-animation-duration: 1s; 
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-direction: alternate;
+}
+.speaker.blink 						  { @include blink }
+@-webkit-keyframes opacity1to0 	{	from { opacity: 1;} to { opacity: 0; } }
 
+/*#sm2-container    { position: absolute; top: -200px; }
+*/
+@font-face {
+    font-family: 'DanielBold';
+    src: url('fonts/danielbd-webfont.eot');
+    src: url('fonts/danielbd-webfont.eot?iefix') format('eot'),
+         url('fonts/danielbd-webfont.woff') format('woff'),
+         local("@"), url('fonts/danielbd-webfont.ttf') format('opentype'),
+         url('fonts/danielbd-webfont.svg#webfontxsRwIIFF') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'ChunkFiveRegular';
+    src: url('fonts/Chunkfive-webfont.eot');
+    src: url('fonts/Chunkfive-webfont.eot?iefix') format('eot'),
+         url('fonts/Chunkfive-webfont.woff') format('woff'),
+         url('fonts/Chunkfive-webfont.ttf') format('truetype'),
+         url('fonts/Chunkfive-webfont.svg#webfont90E2uSjN') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+h1, h2 { text-align: center;}  
+  
+h1 { 	 @include blink; font: 40px 'DanielBold', Arial, sans-serif;}
+h2 { 	 font: 14px 'ChunkFiveRegular', Arial, sans-serif; clear: both; display: none}  
+  
 /*.rfm { background-image:url(rfm.png); }
 .europe1 { background-image:url(europe1.png); }
 */
-/* position the bars and balls correctly (rotate them and translate them outward)*/
-.bar1 {
-  -moz-transform:rotate(0deg) translate(0, -40px);
-  -webkit-transform:rotate(0deg) translate(0, -40px);opacity:0.12;
-}
-.bar2 {
-  -moz-transform:rotate(45deg) translate(0, -40px);
-  -webkit-transform:rotate(45deg) translate(0, -40px);opacity:0.25;
-}
-.bar3 {
-  -moz-transform:rotate(90deg) translate(0, -40px);
-  -webkit-transform:rotate(90deg) translate(0, -40px);opacity:0.37;
-}
-.bar4 {
-  -moz-transform:rotate(135deg) translate(0, -40px);
-  -webkit-transform:rotate(135deg) translate(0, -40px);opacity:0.50;
-}
-.bar5 {
-  -moz-transform:rotate(180deg) translate(0, -40px);
-  -webkit-transform:rotate(180deg) translate(0, -40px);opacity:0.62;
-}
-.bar6 {
-  -moz-transform:rotate(225deg) translate(0, -40px);
-  -webkit-transform:rotate(225deg) translate(0, -40px);opacity:0.75;
-}
-.bar7 {
-  -moz-transform:rotate(270deg) translate(0, -40px);
-  -webkit-transform:rotate(270deg) translate(0, -40px);opacity:0.87;
-}
-.bar8 {
-  -moz-transform:rotate(315deg) translate(0, -40px);
-  -webkit-transform:rotate(315deg) translate(0, -40px);opacity:1;
-}
-
-#img {
-  position:relative;
-  width:100px;
-  height:100px;
-  margin-bottom:.22em;
-  -moz-border-radius:100px;
-  float:left;
-  -moz-transform:scale(0.5);
-  -webkit-transform:scale(0.5);
-}
-#img div {
-  width:10px;
-  height:30px;
-  background:#EA008B;
-  position:absolute;
-  top:35px;
-  left:45px;
-}
-#img {
-  -webkit-animation-name: rotateThis;
-  -webkit-animation-duration:2s;
-  -webkit-animation-iteration-count:infinite;
-  -webkit-animation-timing-function:linear;
-}
-@-webkit-keyframes rotateThis {
-  from {-webkit-transform:scale(0.5) rotate(0deg);}
-  to {-webkit-transform:scale(0.5) rotate(360deg);}
-}
